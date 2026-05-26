@@ -9,7 +9,7 @@
   *{box-sizing:border-box;margin:0;padding:0}
   :root{
     --g50:#EAF3DE;--g100:#C0DD97;--g200:#97C459;--g400:#639922;--g600:#3B6D11;--g800:#27500A;--g900:#173404;
-    --bg:#f7faf2;--surface:#ffffff;--border:#d4e8b8;--text:#1a2e0a;--muted:#5a7a40;--light:#EAF3DE;
+    --bg:#f7faf2;--surface:#ffffff;--border:#d4e8b8;--text:#1a2e0a;--muted:#5a7a40;
   }
   html,body{min-height:100%;background:var(--bg);font-family:'Noto Sans KR',sans-serif;color:var(--text);-webkit-tap-highlight-color:transparent}
   .screen{display:none}.screen.active{display:block}
@@ -18,7 +18,7 @@
   .header h1{font-size:22px;font-weight:700;color:#EAF3DE;letter-spacing:-0.3px}
   .header p{font-size:13px;color:#97C459;margin-top:5px}
   .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.25rem;margin-bottom:1rem}
-  .btn{display:block;width:100%;padding:14px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;border:none;text-align:center;font-family:'Noto Sans KR',sans-serif;letter-spacing:-0.2px}
+  .btn{display:block;width:100%;padding:14px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;border:none;text-align:center;font-family:'Noto Sans KR',sans-serif}
   .btn-primary{background:var(--g600);color:#EAF3DE}.btn-primary:active{background:var(--g800)}
   .btn-sm{display:inline-flex;align-items:center;gap:4px;width:auto;padding:8px 14px;font-size:13px;font-weight:500;border-radius:10px;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:'Noto Sans KR',sans-serif}
   .btn-sm-green{background:var(--g600);color:#EAF3DE;border-color:var(--g600)}
@@ -27,59 +27,36 @@
   label{font-size:13px;color:var(--muted);display:block;font-weight:500}
   .field{margin-bottom:1rem}
   .mg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0.75rem 0}
-  .mc{padding:10px 6px;border-radius:12px;border:2px solid var(--border);text-align:center;cursor:pointer;font-size:11px;line-height:1.45;color:var(--text);background:var(--bg);transition:border-color 0.15s}
+  .mc{padding:12px 6px;border-radius:12px;border:2px solid var(--border);text-align:center;cursor:pointer;font-size:12px;line-height:1.5;color:var(--text);background:var(--bg)}
   .mc:active{border-color:var(--g400)}
   .mc.done{background:var(--g50);border-color:var(--g600);color:var(--g800)}
   .badge{display:inline-block;font-size:11px;padding:3px 9px;border-radius:8px;font-weight:500}
   .bdone{background:var(--g50);color:var(--g800)}.bnew{background:#C0DD97;color:var(--g900)}
   .stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:1rem}
-  .stat{background:var(--light);border-radius:12px;padding:0.85rem 0.5rem;text-align:center}
+  .stat{background:var(--g50);border-radius:12px;padding:0.85rem 0.5rem;text-align:center}
   .stat-num{font-size:24px;font-weight:700;color:var(--g800)}.stat-label{font-size:11px;color:var(--muted);margin-top:2px}
   .sub-item{border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:8px;background:var(--surface)}
   .tab-bar{display:flex;gap:6px;margin-bottom:1rem;border-bottom:1px solid var(--border);padding-bottom:10px}
   .tab{font-size:13px;padding:6px 12px;border-radius:10px;cursor:pointer;color:var(--muted);border:none;background:transparent;font-family:'Noto Sans KR',sans-serif;font-weight:500}
   .tab.active{background:var(--g50);color:var(--g800);font-weight:700}
   .tc{display:none}.tc.active{display:block}
-  .pbar-wrap{background:var(--light);border-radius:4px;height:8px;overflow:hidden;margin-top:5px}
-  .pbar-fill{height:100%;background:var(--g600);border-radius:4px;transition:width 0.4s}
+  .pbar-wrap{background:var(--g50);border-radius:4px;height:8px;overflow:hidden;margin-top:5px}
+  .pbar-fill{height:100%;background:var(--g600);border-radius:4px}
   .nav-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
-  .setup-note{background:var(--g50);border:1px solid #C0DD97;border-radius:12px;padding:12px 14px;margin-bottom:1rem;font-size:13px;color:var(--g800);line-height:1.6}
   .link-btn{background:none;border:none;color:var(--g600);font-size:13px;cursor:pointer;display:block;margin:12px auto 0;text-align:center;font-family:'Noto Sans KR',sans-serif;font-weight:500;text-decoration:underline;text-underline-offset:2px}
   .toast-wrap{height:44px;display:flex;align-items:center;justify-content:center;margin-bottom:2px}
   .toast{background:var(--g800);color:#EAF3DE;padding:8px 20px;border-radius:20px;font-size:13px;font-weight:500;display:none}
   .photo-preview{display:none;width:100%;max-height:200px;object-fit:cover;border-radius:12px;margin-top:10px}
   .err{color:#A32D2D;font-size:13px;margin-top:8px;display:none;text-align:center}
-  .sec-title{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px}
+  .sec-title{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:8px}
 </style>
 </head>
 <body>
 
 <div class="toast-wrap"><div id="toast" class="toast"></div></div>
 
-<!-- 설정 화면 -->
-<div id="screen-setup" class="screen active">
-<div class="wrap">
-  <div class="header">
-    <h1>203 미션 빙고</h1>
-    <p>대한민국 청소년 박람회</p>
-  </div>
-  <div class="card">
-    <div class="field">
-      <label>Apps Script 웹 앱 URL</label>
-      <input type="url" id="setup-url" placeholder="https://script.google.com/macros/s/.../exec">
-    </div>
-    <div class="field">
-      <label>선생님 관리 비밀번호</label>
-      <input type="text" id="setup-pw" value="203" placeholder="예: 203history">
-    </div>
-    <button class="btn btn-primary" onclick="saveSetup()">설정 저장 후 시작</button>
-  </div>
-  <div class="setup-note">Apps Script 배포 URL을 입력하면 학생 제출 데이터가 구글 시트에 실시간으로 저장돼요.</div>
-</div>
-</div>
-
 <!-- 홈 화면 -->
-<div id="screen-home" class="screen">
+<div id="screen-home" class="screen active">
 <div class="wrap">
   <div class="header">
     <h1>203 미션 빙고</h1>
@@ -182,154 +159,152 @@
 </div>
 
 <script>
-const MISSIONS=[
-  {id:0,label:"Ai·디지털존\n체험 후 사진찍기",verify:"카톡인증",zone:"Ai·디지털존"},
-  {id:1,label:"기후·에너지존\n새로 알게된 것 적기",verify:"패들렛인증",zone:"기후·에너지존"},
-  {id:2,label:"진로탐색존\n담당자에게 질문 1개",verify:"패들렛인증",zone:"진로탐색존"},
-  {id:3,label:"힐링·건강존\n체험 프로그램 참여",verify:"자유",zone:"힐링·건강존"},
-  {id:4,label:"음식 남기지 않고\n맛있게 점심 식사",verify:"자유",zone:"식사"},
-  {id:5,label:"지역특화존\n우리 지역 부스 사진",verify:"패들렛인증",zone:"지역특화존"},
-  {id:6,label:"친구들과\n원하는 장소 사진",verify:"카톡인증",zone:"자유"},
-  {id:7,label:"6개 존 중 3개 이상\n리플렛 모으기",verify:"자유",zone:"전체"},
-  {id:8,label:"오늘 가장 기억에\n남는 것 적기",verify:"패들렛인증",zone:"전체"},
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx321cBKUOoz3IDBKDmiEDBfHfh_BmEWb3z6ey-8nWXwvjvVBrKF3q8k78Tap47UVCu/exec';
+const ADMIN_PW = '203';
+
+const MISSIONS = [
+  {id:0, label:"Ai·디지털존에서\n체험하고 사진찍기", zone:"Ai·디지털존"},
+  {id:1, label:"기후·에너지존에서\n새로 알게된 것 적기", zone:"기후·에너지존"},
+  {id:2, label:"진로탐색존에서\n관심직업 담당자에게\n질문 1개 하기", zone:"진로탐색존"},
+  {id:3, label:"힐링·건강존에서\n체험 프로그램\n1가지 참여하기", zone:"힐링·건강존"},
+  {id:4, label:"음식 남기지 않고\n맛있게 점심 식사하기", zone:"식사"},
+  {id:5, label:"지역특화존에서\n우리 지역 관련\n부스 찾아 사진찍기", zone:"지역특화존"},
+  {id:6, label:"친구들과 원하는\n장소에서 같이\n사진찍기", zone:"자유"},
+  {id:7, label:"6개 중 3개 존 이상\n방문하고 리플렛\n모으기", zone:"전체"},
+  {id:8, label:"오늘 박람회에서\n가장 기억에 남는\n것 적기", zone:"전체"},
 ];
 
-let SCRIPT_URL='';
-let ADMIN_PW='203';
-let currentStudent=null;
-let localSubs=[];
+let currentStudent = null;
+let localSubs = [];
 
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
-function toast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.style.display='inline-block';
-  setTimeout(()=>{t.style.display='none';},2500);
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.display = 'inline-block';
+  setTimeout(() => { t.style.display = 'none'; }, 2500);
 }
-function saveSetup(){
-  const url=document.getElementById('setup-url').value.trim();
-  const pw=document.getElementById('setup-pw').value.trim();
-  if(!url){alert('URL을 입력해주세요.');return;}
-  SCRIPT_URL=url;ADMIN_PW=pw||'203';
-  localStorage.setItem('bingo_url',url);
-  localStorage.setItem('bingo_pw',pw||'203');
-  toast('설정 저장됨!');showScreen('screen-home');
-}
-function goStudent(){
-  const num=document.getElementById('home-num').value.trim();
-  const name=document.getElementById('home-name').value.trim();
-  if(!num||!name){alert('학번과 이름을 입력해주세요.');return;}
-  currentStudent={num,name};
-  document.getElementById('student-label').textContent=name+'님';
-  populateMissionSelect();renderStudentBingo();renderMySubmissions();
+function goStudent() {
+  const num = document.getElementById('home-num').value.trim();
+  const name = document.getElementById('home-name').value.trim();
+  if (!num || !name) { alert('학번과 이름을 입력해주세요.'); return; }
+  currentStudent = {num, name};
+  document.getElementById('student-label').textContent = name + '님';
+  populateMissionSelect(); renderStudentBingo(); renderMySubmissions();
   showScreen('screen-student');
 }
-function renderStudentBingo(){
-  const grid=document.getElementById('student-bingo');
-  const done=new Set(localSubs.filter(s=>s.studentNum===currentStudent.num).map(s=>s.missionId));
-  grid.innerHTML=MISSIONS.map(m=>`<div class="mc${done.has(m.id)?' done':''}" onclick="selectMission(${m.id})">${m.label.replace('\n','<br>')}<br><span style="font-size:10px;opacity:0.65;display:block;margin-top:3px">${m.verify}</span>${done.has(m.id)?'<span style="font-size:10px;color:var(--g600);display:block;margin-top:2px;font-weight:700">✓완료</span>':''}</div>`).join('');
+function renderStudentBingo() {
+  const grid = document.getElementById('student-bingo');
+  const done = new Set(localSubs.filter(s => s.studentNum === currentStudent.num).map(s => s.missionId));
+  grid.innerHTML = MISSIONS.map(m =>
+    `<div class="mc${done.has(m.id) ? ' done' : ''}" onclick="selectMission(${m.id})">${m.label.replace(/\n/g,'<br>')}${done.has(m.id) ? '<br><span style="font-size:11px;color:var(--g600);font-weight:700;margin-top:3px;display:block">✓ 완료</span>' : ''}</div>`
+  ).join('');
 }
-function selectMission(id){
-  document.getElementById('submit-mission').value=id;
+function selectMission(id) {
+  document.getElementById('submit-mission').value = id;
   showScreen('screen-submit');
 }
-function renderMySubmissions(){
-  const list=document.getElementById('my-subs-list');
-  const mine=localSubs.filter(s=>s.studentNum===currentStudent.num);
-  if(!mine.length){list.innerHTML='<p style="font-size:13px;color:var(--muted)">아직 제출한 미션이 없어요.</p>';return;}
-  list.innerHTML=mine.map(s=>`<div class="sub-item"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;font-weight:700">${MISSIONS[s.missionId].zone}</span><span class="badge bdone">제출완료</span></div>${s.text?`<p style="font-size:12px;color:var(--muted);margin-top:5px">${s.text}</p>`:''}</div>`).join('');
+function renderMySubmissions() {
+  const list = document.getElementById('my-subs-list');
+  const mine = localSubs.filter(s => s.studentNum === currentStudent.num);
+  if (!mine.length) { list.innerHTML = '<p style="font-size:13px;color:var(--muted)">아직 제출한 미션이 없어요.</p>'; return; }
+  list.innerHTML = mine.map(s =>
+    `<div class="sub-item"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;font-weight:700">${MISSIONS[s.missionId].zone}</span><span class="badge bdone">제출완료</span></div>${s.text ? `<p style="font-size:12px;color:var(--muted);margin-top:5px">${s.text}</p>` : ''}</div>`
+  ).join('');
 }
-function populateMissionSelect(){
-  const sel=document.getElementById('submit-mission');
-  sel.innerHTML='<option value="">미션을 선택하세요</option>'+MISSIONS.map(m=>`<option value="${m.id}">${m.zone} — ${m.verify}</option>`).join('');
+function populateMissionSelect() {
+  const sel = document.getElementById('submit-mission');
+  sel.innerHTML = '<option value="">미션을 선택하세요</option>' + MISSIONS.map(m => `<option value="${m.id}">${m.zone}</option>`).join('');
 }
-function previewPhoto(input){
-  const p=document.getElementById('photo-preview');
-  if(input.files&&input.files[0]){const r=new FileReader();r.onload=e=>{p.src=e.target.result;p.style.display='block';};r.readAsDataURL(input.files[0]);}
-}
-async function submitMission(){
-  const mId=document.getElementById('submit-mission').value;
-  const text=document.getElementById('submit-text').value.trim();
-  const photoPreview=document.getElementById('photo-preview');
-  if(mId===''){alert('미션을 선택해주세요.');return;}
-  if(localSubs.find(s=>s.studentNum===currentStudent.num&&s.missionId==mId)){alert('이미 제출한 미션이에요!');return;}
-  const btn=document.getElementById('submit-btn');
-  const status=document.getElementById('submit-status');
-  btn.textContent='제출 중...';btn.disabled=true;status.textContent='저장하는 중...';
-  const payload={
-    studentNum:currentStudent.num,studentName:currentStudent.name,
-    missionId:parseInt(mId),missionZone:MISSIONS[parseInt(mId)].zone,
-    text,photoUrl:(photoPreview.src&&photoPreview.src.startsWith('data:'))?'(사진첨부)':''
-  };
-  if(SCRIPT_URL){
-    try{await fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(payload),mode:'no-cors'});}
-    catch(err){status.textContent='오류: '+err.message;}
+function previewPhoto(input) {
+  const p = document.getElementById('photo-preview');
+  if (input.files && input.files[0]) {
+    const r = new FileReader();
+    r.onload = e => { p.src = e.target.result; p.style.display = 'block'; };
+    r.readAsDataURL(input.files[0]);
   }
-  localSubs.push({...payload,time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})});
-  document.getElementById('submit-text').value='';
-  document.getElementById('submit-photo').value='';
-  photoPreview.style.display='none';photoPreview.src='';
+}
+async function submitMission() {
+  const mId = document.getElementById('submit-mission').value;
+  const text = document.getElementById('submit-text').value.trim();
+  const photoPreview = document.getElementById('photo-preview');
+  if (mId === '') { alert('미션을 선택해주세요.'); return; }
+  if (localSubs.find(s => s.studentNum === currentStudent.num && s.missionId == mId)) { alert('이미 제출한 미션이에요!'); return; }
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('submit-status');
+  btn.textContent = '제출 중...'; btn.disabled = true; status.textContent = '저장하는 중...';
+  const payload = {
+    studentNum: currentStudent.num, studentName: currentStudent.name,
+    missionId: parseInt(mId), missionZone: MISSIONS[parseInt(mId)].zone,
+    text, photoUrl: (photoPreview.src && photoPreview.src.startsWith('data:')) ? '(사진첨부)' : ''
+  };
+  try { await fetch(SCRIPT_URL, {method:'POST', body:JSON.stringify(payload), mode:'no-cors'}); }
+  catch(err) { status.textContent = '오류: ' + err.message; }
+  localSubs.push({...payload, time: new Date().toLocaleTimeString('ko-KR', {hour:'2-digit', minute:'2-digit'})});
+  document.getElementById('submit-text').value = '';
+  document.getElementById('submit-photo').value = '';
+  photoPreview.style.display = 'none'; photoPreview.src = '';
   toast('제출 완료! 구글 시트에 저장됐어요.');
-  renderStudentBingo();renderMySubmissions();
-  btn.textContent='제출하기';btn.disabled=false;status.textContent='';
+  renderStudentBingo(); renderMySubmissions();
+  btn.textContent = '제출하기'; btn.disabled = false; status.textContent = '';
   showScreen('screen-student');
 }
-function adminLogin(){
-  if(document.getElementById('admin-pw').value===ADMIN_PW){
-    document.getElementById('pw-err').style.display='none';
-    loadAdminData();showScreen('screen-admin');
-  }else{document.getElementById('pw-err').style.display='block';}
+function adminLogin() {
+  if (document.getElementById('admin-pw').value === ADMIN_PW) {
+    document.getElementById('pw-err').style.display = 'none';
+    loadAdminData(); showScreen('screen-admin');
+  } else { document.getElementById('pw-err').style.display = 'block'; }
 }
-async function loadAdminData(){
-  const btn=document.getElementById('refresh-btn');btn.textContent='로딩중...';btn.disabled=true;
-  let subs=[];
-  if(SCRIPT_URL){
-    try{
-      const res=await fetch(SCRIPT_URL+'?t='+Date.now());
-      const data=await res.json();
-      if(data.submissions){subs=data.submissions.map(r=>({
-        studentNum:r['학번']||'',studentName:r['이름']||'',
-        missionId:parseInt(r['미션ID'])||0,missionZone:r['미션존']||'',
-        text:r['내용']||'',time:r['타임스탬프']||'',photoUrl:r['사진URL']||''
-      }));}
-    }catch(e){subs=localSubs;document.getElementById('last-updated').textContent='시트 연결 실패 — 로컬 데이터';}
-  }else{subs=localSubs;}
-  document.getElementById('last-updated').textContent='업데이트: '+new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
-  renderAdminUI(subs);btn.textContent='새로고침';btn.disabled=false;
+async function loadAdminData() {
+  const btn = document.getElementById('refresh-btn'); btn.textContent = '로딩중...'; btn.disabled = true;
+  let subs = [];
+  try {
+    const res = await fetch(SCRIPT_URL + '?t=' + Date.now());
+    const data = await res.json();
+    if (data.submissions) {
+      subs = data.submissions.map(r => ({
+        studentNum: r['학번']||'', studentName: r['이름']||'',
+        missionId: parseInt(r['미션ID'])||0, missionZone: r['미션존']||'',
+        text: r['내용']||'', time: r['타임스탬프']||''
+      }));
+    }
+  } catch(e) {
+    subs = localSubs;
+    document.getElementById('last-updated').textContent = '시트 연결 실패 — 로컬 데이터';
+  }
+  document.getElementById('last-updated').textContent = '업데이트: ' + new Date().toLocaleTimeString('ko-KR', {hour:'2-digit', minute:'2-digit'});
+  renderAdminUI(subs); btn.textContent = '새로고침'; btn.disabled = false;
 }
-function renderAdminUI(subs){
-  const total=subs.length;
-  const students=new Set(subs.map(s=>s.studentNum)).size;
-  const byS={};subs.forEach(s=>{byS[s.studentNum]=(byS[s.studentNum]||0)+1;});
-  const top=students?Math.max(...Object.values(byS)):0;
-  document.getElementById('stat-total').textContent=total;
-  document.getElementById('stat-students').textContent=students;
-  document.getElementById('stat-top').textContent=top;
-  document.getElementById('admin-missions-list').innerHTML=MISSIONS.map(m=>{
-    const cnt=subs.filter(s=>s.missionId===m.id).length;
-    const pct=students?Math.round(cnt/students*100):0;
+function renderAdminUI(subs) {
+  const total = subs.length;
+  const students = new Set(subs.map(s => s.studentNum)).size;
+  const byS = {}; subs.forEach(s => { byS[s.studentNum] = (byS[s.studentNum]||0) + 1; });
+  const top = students ? Math.max(...Object.values(byS)) : 0;
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-students').textContent = students;
+  document.getElementById('stat-top').textContent = top;
+  document.getElementById('admin-missions-list').innerHTML = MISSIONS.map(m => {
+    const cnt = subs.filter(s => s.missionId === m.id).length;
+    const pct = students ? Math.round(cnt / students * 100) : 0;
     return `<div class="card" style="padding:0.85rem"><div style="display:flex;justify-content:space-between"><span style="font-size:13px;font-weight:700">${m.zone}</span><span style="font-size:13px;color:var(--muted)">${cnt}명</span></div><div class="pbar-wrap"><div class="pbar-fill" style="width:${pct}%"></div></div><span style="font-size:11px;color:var(--muted)">${pct}% 달성</span></div>`;
   }).join('');
-  const sMap={};subs.forEach(s=>{if(!sMap[s.studentNum])sMap[s.studentNum]={name:s.studentName,missions:new Set()};sMap[s.studentNum].missions.add(s.missionId);});
-  const sorted=Object.entries(sMap).sort((a,b)=>b[1].missions.size-a[1].missions.size);
-  document.getElementById('admin-students-list').innerHTML=sorted.length?sorted.map(([num,info])=>`<div class="card" style="padding:0.85rem"><div style="display:flex;justify-content:space-between;align-items:center"><div><span style="font-size:14px;font-weight:700">${info.name}</span><span style="font-size:12px;color:var(--muted);margin-left:6px">${num}</span></div><span style="font-size:14px;font-weight:700;color:var(--g600)">${info.missions.size}/9</span></div><div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px">${[...info.missions].map(id=>`<span class="badge bdone">${MISSIONS[id]?MISSIONS[id].zone:id}</span>`).join('')}</div></div>`).join(''):'<p style="font-size:13px;color:var(--muted)">아직 제출 내역이 없어요.</p>';
-  document.getElementById('admin-feed-list').innerHTML=subs.length?[...subs].reverse().map(s=>`<div class="sub-item"><div style="display:flex;justify-content:space-between"><span style="font-size:13px;font-weight:700">${s.studentName} (${s.studentNum})</span><span style="font-size:12px;color:var(--muted)">${s.time}</span></div><span class="badge bnew" style="margin-top:5px;display:inline-block">${s.missionZone||''}</span>${s.text?`<p style="font-size:12px;color:var(--muted);margin-top:5px">${s.text}</p>`:''}</div>`).join(''):'<p style="font-size:13px;color:var(--muted)">아직 제출 내역이 없어요.</p>';
+  const sMap = {}; subs.forEach(s => { if (!sMap[s.studentNum]) sMap[s.studentNum] = {name:s.studentName, missions:new Set()}; sMap[s.studentNum].missions.add(s.missionId); });
+  const sorted = Object.entries(sMap).sort((a,b) => b[1].missions.size - a[1].missions.size);
+  document.getElementById('admin-students-list').innerHTML = sorted.length ? sorted.map(([num,info]) =>
+    `<div class="card" style="padding:0.85rem"><div style="display:flex;justify-content:space-between;align-items:center"><div><span style="font-size:14px;font-weight:700">${info.name}</span><span style="font-size:12px;color:var(--muted);margin-left:6px">${num}</span></div><span style="font-size:14px;font-weight:700;color:var(--g600)">${info.missions.size}/9</span></div><div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px">${[...info.missions].map(id => `<span class="badge bdone">${MISSIONS[id]?MISSIONS[id].zone:id}</span>`).join('')}</div></div>`
+  ).join('') : '<p style="font-size:13px;color:var(--muted)">아직 제출 내역이 없어요.</p>';
+  document.getElementById('admin-feed-list').innerHTML = subs.length ? [...subs].reverse().map(s =>
+    `<div class="sub-item"><div style="display:flex;justify-content:space-between"><span style="font-size:13px;font-weight:700">${s.studentName} (${s.studentNum})</span><span style="font-size:12px;color:var(--muted)">${s.time}</span></div><span class="badge bnew" style="margin-top:5px;display:inline-block">${s.missionZone||''}</span>${s.text ? `<p style="font-size:12px;color:var(--muted);margin-top:5px">${s.text}</p>` : ''}</div>`
+  ).join('') : '<p style="font-size:13px;color:var(--muted)">아직 제출 내역이 없어요.</p>';
 }
-function switchTab(id,btn){
-  document.querySelectorAll('.tc').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');btn.classList.add('active');
+function switchTab(id, btn) {
+  document.querySelectorAll('.tc').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active'); btn.classList.add('active');
 }
-
-// 저장된 설정 불러오기
-window.onload=function(){
-  const url=localStorage.getItem('bingo_url');
-  const pw=localStorage.getItem('bingo_pw');
-  if(url){SCRIPT_URL=url;ADMIN_PW=pw||'203';showScreen('screen-home');}
-};
 </script>
 </body>
 </html>
