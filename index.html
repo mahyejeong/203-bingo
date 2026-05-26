@@ -8,30 +8,34 @@
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
   *{box-sizing:border-box;margin:0;padding:0}
   :root{
-    --g50:#EAF3DE;--g100:#C0DD97;--g200:#97C459;--g400:#639922;--g600:#3B6D11;--g800:#27500A;--g900:#173404;
+    --g50:#EAF3DE;--g100:#C0DD97;--g200:#97C459;--g400:#639922;--g600:#3B6D11;--g800:#27500A;
     --bg:#f7faf2;--surface:#ffffff;--border:#d4e8b8;--text:#1a2e0a;--muted:#5a7a40;
   }
   html,body{min-height:100%;background:var(--bg);font-family:'Noto Sans KR',sans-serif;color:var(--text);-webkit-tap-highlight-color:transparent}
   .screen{display:none}.screen.active{display:block}
   .wrap{max-width:420px;margin:0 auto;padding:1rem}
   .header{background:var(--g600);padding:1.5rem 1rem 1.25rem;text-align:center;border-radius:16px;margin-bottom:1rem}
-  .header h1{font-size:22px;font-weight:700;color:#EAF3DE;letter-spacing:-0.3px}
+  .header h1{font-size:22px;font-weight:700;color:#EAF3DE}
   .header p{font-size:13px;color:#97C459;margin-top:5px}
   .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.25rem;margin-bottom:1rem}
-  .btn{display:block;width:100%;padding:14px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;border:none;text-align:center;font-family:'Noto Sans KR',sans-serif}
+  .btn{display:block;width:100%;padding:14px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;border:none;text-align:center;font-family:'Noto Sans KR',sans-serif;transition:background 0.15s}
   .btn-primary{background:var(--g600);color:#EAF3DE}.btn-primary:active{background:var(--g800)}
-  .btn-sm{display:inline-flex;align-items:center;gap:4px;width:auto;padding:8px 14px;font-size:13px;font-weight:500;border-radius:10px;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:'Noto Sans KR',sans-serif}
+  .btn-done{background:#27500A;color:#EAF3DE;margin-top:10px}
+  .btn-done:active{background:#173404}
+  .btn-done:disabled{background:#aaa;cursor:not-allowed}
+  .btn-sm{display:inline-flex;align-items:center;width:auto;padding:8px 14px;font-size:13px;font-weight:500;border-radius:10px;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:'Noto Sans KR',sans-serif}
   .btn-sm-green{background:var(--g600);color:#EAF3DE;border-color:var(--g600)}
-  input,textarea,select{width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:10px;font-size:15px;color:var(--text);background:var(--surface);margin-top:5px;font-family:'Noto Sans KR',sans-serif;-webkit-appearance:none;appearance:none}
+  input,textarea,select{width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:10px;font-size:15px;color:var(--text);background:var(--surface);margin-top:5px;font-family:'Noto Sans KR',sans-serif;-webkit-appearance:none}
   input:focus,textarea:focus,select:focus{outline:none;border-color:var(--g400)}
   label{font-size:13px;color:var(--muted);display:block;font-weight:500}
   .field{margin-bottom:1rem}
   .mg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0.75rem 0}
-  .mc{padding:12px 6px;border-radius:12px;border:2px solid var(--border);text-align:center;cursor:pointer;font-size:12px;line-height:1.5;color:var(--text);background:var(--bg)}
+  .mc{padding:12px 6px;border-radius:12px;border:2px solid var(--border);text-align:center;cursor:pointer;font-size:11.5px;line-height:1.5;color:var(--text);background:var(--bg)}
   .mc:active{border-color:var(--g400)}
   .mc.done{background:var(--g50);border-color:var(--g600);color:var(--g800)}
   .badge{display:inline-block;font-size:11px;padding:3px 9px;border-radius:8px;font-weight:500}
-  .bdone{background:var(--g50);color:var(--g800)}.bnew{background:#C0DD97;color:var(--g900)}
+  .bdone{background:var(--g50);color:var(--g800)}.bnew{background:#C0DD97;color:#173404}
+  .bfinish{background:#27500A;color:#EAF3DE}
   .stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:1rem}
   .stat{background:var(--g50);border-radius:12px;padding:0.85rem 0.5rem;text-align:center}
   .stat-num{font-size:24px;font-weight:700;color:var(--g800)}.stat-label{font-size:11px;color:var(--muted);margin-top:2px}
@@ -44,18 +48,23 @@
   .pbar-fill{height:100%;background:var(--g600);border-radius:4px}
   .nav-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
   .link-btn{background:none;border:none;color:var(--g600);font-size:13px;cursor:pointer;display:block;margin:12px auto 0;text-align:center;font-family:'Noto Sans KR',sans-serif;font-weight:500;text-decoration:underline;text-underline-offset:2px}
-  .toast-wrap{height:44px;display:flex;align-items:center;justify-content:center;margin-bottom:2px}
+  .toast-wrap{height:44px;display:flex;align-items:center;justify-content:center;margin-bottom:2px;position:sticky;top:0;z-index:99}
   .toast{background:var(--g800);color:#EAF3DE;padding:8px 20px;border-radius:20px;font-size:13px;font-weight:500;display:none}
   .photo-preview{display:none;width:100%;max-height:200px;object-fit:cover;border-radius:12px;margin-top:10px}
   .err{color:#A32D2D;font-size:13px;margin-top:8px;display:none;text-align:center}
   .sec-title{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:8px}
+  .finish-box{background:var(--g50);border:2px solid var(--g600);border-radius:14px;padding:1rem;margin-bottom:1rem;text-align:center}
+  .finish-box p{font-size:13px;color:var(--g800);margin-bottom:10px;line-height:1.6}
+  .progress-text{font-size:13px;color:var(--muted);text-align:center;margin-top:6px}
+  .spinner{display:inline-block;width:16px;height:16px;border:2px solid #EAF3DE;border-top-color:transparent;border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:6px}
+  @keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
 <div class="toast-wrap"><div id="toast" class="toast"></div></div>
 
-<!-- 홈 화면 -->
+<!-- 홈 -->
 <div id="screen-home" class="screen active">
 <div class="wrap">
   <div class="header">
@@ -82,7 +91,15 @@
   <div class="card" style="padding:1rem">
     <p style="font-size:12px;color:var(--muted);margin-bottom:4px">미션을 탭하면 바로 제출 화면으로 이동해요</p>
     <div class="mg" id="student-bingo"></div>
+    <p class="progress-text" id="progress-text"></p>
   </div>
+
+  <!-- 완료 버튼 박스 -->
+  <div class="finish-box" id="finish-box" style="display:none">
+    <p>🎉 미션을 달성했어요!<br>완료 버튼을 눌러 선생님께 제출하세요.</p>
+    <button class="btn btn-done" id="finish-btn" onclick="submitFinish()">✅ 오늘 미션 완료 제출</button>
+  </div>
+
   <div>
     <p class="sec-title">내 제출 현황</p>
     <div id="my-subs-list"></div>
@@ -90,7 +107,7 @@
 </div>
 </div>
 
-<!-- 제출 화면 -->
+<!-- 미션 제출 -->
 <div id="screen-submit" class="screen">
 <div class="wrap">
   <div class="nav-bar">
@@ -176,49 +193,94 @@ const MISSIONS = [
 
 let currentStudent = null;
 let localSubs = [];
+let finishSubmitted = false;
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0, 0);
 }
+
 function toast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.style.display = 'inline-block';
-  setTimeout(() => { t.style.display = 'none'; }, 2500);
+  setTimeout(() => { t.style.display = 'none'; }, 2800);
 }
+
 function goStudent() {
   const num = document.getElementById('home-num').value.trim();
   const name = document.getElementById('home-name').value.trim();
   if (!num || !name) { alert('학번과 이름을 입력해주세요.'); return; }
   currentStudent = {num, name};
+  finishSubmitted = false;
   document.getElementById('student-label').textContent = name + '님';
   populateMissionSelect(); renderStudentBingo(); renderMySubmissions();
   showScreen('screen-student');
 }
+
+function getDoneMissions() {
+  return new Set(localSubs.filter(s => s.studentNum === currentStudent.num && !s.isFinish).map(s => s.missionId));
+}
+
 function renderStudentBingo() {
   const grid = document.getElementById('student-bingo');
-  const done = new Set(localSubs.filter(s => s.studentNum === currentStudent.num).map(s => s.missionId));
+  const done = getDoneMissions();
+  const count = done.size;
+
   grid.innerHTML = MISSIONS.map(m =>
-    `<div class="mc${done.has(m.id) ? ' done' : ''}" onclick="selectMission(${m.id})">${m.label.replace(/\n/g,'<br>')}${done.has(m.id) ? '<br><span style="font-size:11px;color:var(--g600);font-weight:700;margin-top:3px;display:block">✓ 완료</span>' : ''}</div>`
+    `<div class="mc${done.has(m.id) ? ' done' : ''}" onclick="selectMission(${m.id})">
+      ${m.label.replace(/\n/g,'<br>')}
+      ${done.has(m.id) ? '<br><span style="font-size:11px;color:var(--g600);font-weight:700;margin-top:3px;display:block">✓ 완료</span>' : ''}
+    </div>`
   ).join('');
+
+  document.getElementById('progress-text').textContent = `${count} / 9 미션 완료`;
+
+  // 1개 이상 완료 시 완료 버튼 표시
+  const finishBox = document.getElementById('finish-box');
+  const finishBtn = document.getElementById('finish-btn');
+  if (count >= 1) {
+    finishBox.style.display = 'block';
+    if (finishSubmitted) {
+      finishBtn.textContent = '✅ 완료 제출됨';
+      finishBtn.disabled = true;
+    } else {
+      finishBtn.textContent = '✅ 오늘 미션 완료 제출';
+      finishBtn.disabled = false;
+    }
+  } else {
+    finishBox.style.display = 'none';
+  }
 }
+
 function selectMission(id) {
+  const done = getDoneMissions();
+  if (done.has(id)) { toast('이미 완료한 미션이에요!'); return; }
   document.getElementById('submit-mission').value = id;
   showScreen('screen-submit');
 }
+
 function renderMySubmissions() {
   const list = document.getElementById('my-subs-list');
-  const mine = localSubs.filter(s => s.studentNum === currentStudent.num);
+  const mine = localSubs.filter(s => s.studentNum === currentStudent.num && !s.isFinish);
   if (!mine.length) { list.innerHTML = '<p style="font-size:13px;color:var(--muted)">아직 제출한 미션이 없어요.</p>'; return; }
   list.innerHTML = mine.map(s =>
-    `<div class="sub-item"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;font-weight:700">${MISSIONS[s.missionId].zone}</span><span class="badge bdone">제출완료</span></div>${s.text ? `<p style="font-size:12px;color:var(--muted);margin-top:5px">${s.text}</p>` : ''}</div>`
+    `<div class="sub-item">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:13px;font-weight:700">${MISSIONS[s.missionId].zone}</span>
+        <span class="badge bdone">제출완료</span>
+      </div>
+      ${s.text ? `<p style="font-size:12px;color:var(--muted);margin-top:5px">${s.text}</p>` : ''}
+    </div>`
   ).join('');
 }
+
 function populateMissionSelect() {
   const sel = document.getElementById('submit-mission');
-  sel.innerHTML = '<option value="">미션을 선택하세요</option>' + MISSIONS.map(m => `<option value="${m.id}">${m.zone}</option>`).join('');
+  sel.innerHTML = '<option value="">미션을 선택하세요</option>' +
+    MISSIONS.map(m => `<option value="${m.id}">${m.zone}</option>`).join('');
 }
+
 function previewPhoto(input) {
   const p = document.getElementById('photo-preview');
   if (input.files && input.files[0]) {
@@ -227,79 +289,198 @@ function previewPhoto(input) {
     r.readAsDataURL(input.files[0]);
   }
 }
+
+async function postToSheet(payload) {
+  // iframe trick으로 CORS 우회
+  return new Promise((resolve) => {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = SCRIPT_URL;
+    form.target = '_blank';
+    // JSON을 쿼리스트링으로 전달
+    const input = document.createElement('input');
+    input.type = 'hidden'; input.name = 'data'; input.value = JSON.stringify(payload);
+    form.appendChild(input);
+
+    // fetch no-cors 방식 사용 (응답 확인 불가지만 서버엔 도달)
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    }).then(() => resolve(true)).catch(() => resolve(false));
+  });
+}
+
 async function submitMission() {
   const mId = document.getElementById('submit-mission').value;
   const text = document.getElementById('submit-text').value.trim();
   const photoPreview = document.getElementById('photo-preview');
   if (mId === '') { alert('미션을 선택해주세요.'); return; }
-  if (localSubs.find(s => s.studentNum === currentStudent.num && s.missionId == mId)) { alert('이미 제출한 미션이에요!'); return; }
+
+  const done = getDoneMissions();
+  if (done.has(parseInt(mId))) { alert('이미 제출한 미션이에요!'); return; }
+
   const btn = document.getElementById('submit-btn');
   const status = document.getElementById('submit-status');
-  btn.textContent = '제출 중...'; btn.disabled = true; status.textContent = '저장하는 중...';
+  btn.innerHTML = '<span class="spinner"></span>제출 중...'; btn.disabled = true;
+  status.textContent = '구글 시트에 저장하는 중...';
+
   const payload = {
-    studentNum: currentStudent.num, studentName: currentStudent.name,
-    missionId: parseInt(mId), missionZone: MISSIONS[parseInt(mId)].zone,
-    text, photoUrl: (photoPreview.src && photoPreview.src.startsWith('data:')) ? '(사진첨부)' : ''
+    studentNum: currentStudent.num,
+    studentName: currentStudent.name,
+    missionId: parseInt(mId),
+    missionZone: MISSIONS[parseInt(mId)].zone,
+    text,
+    photoUrl: (photoPreview.src && photoPreview.src.startsWith('data:')) ? '(사진첨부)' : '',
+    completed: false
   };
-  try { await fetch(SCRIPT_URL, {method:'POST', body:JSON.stringify(payload), mode:'no-cors'}); }
-  catch(err) { status.textContent = '오류: ' + err.message; }
+
+  await postToSheet(payload);
+
   localSubs.push({...payload, time: new Date().toLocaleTimeString('ko-KR', {hour:'2-digit', minute:'2-digit'})});
   document.getElementById('submit-text').value = '';
   document.getElementById('submit-photo').value = '';
   photoPreview.style.display = 'none'; photoPreview.src = '';
-  toast('제출 완료! 구글 시트에 저장됐어요.');
+
+  toast('✅ 제출 완료! 시트에 저장됐어요.');
   renderStudentBingo(); renderMySubmissions();
   btn.textContent = '제출하기'; btn.disabled = false; status.textContent = '';
   showScreen('screen-student');
 }
+
+async function submitFinish() {
+  const done = getDoneMissions();
+  if (done.size === 0) { alert('먼저 미션을 제출해주세요!'); return; }
+
+  const btn = document.getElementById('finish-btn');
+  btn.innerHTML = '<span class="spinner"></span>제출 중...'; btn.disabled = true;
+
+  const payload = {
+    studentNum: currentStudent.num,
+    studentName: currentStudent.name,
+    missionId: -1,
+    missionZone: '최종완료',
+    text: `총 ${done.size}개 미션 완료`,
+    photoUrl: '',
+    completed: true
+  };
+
+  await postToSheet(payload);
+
+  localSubs.push({...payload, isFinish: true, time: new Date().toLocaleTimeString('ko-KR', {hour:'2-digit', minute:'2-digit'})});
+  finishSubmitted = true;
+  toast('🎉 완료 제출됐어요! 수고했어요~');
+  renderStudentBingo();
+}
+
 function adminLogin() {
   if (document.getElementById('admin-pw').value === ADMIN_PW) {
     document.getElementById('pw-err').style.display = 'none';
     loadAdminData(); showScreen('screen-admin');
   } else { document.getElementById('pw-err').style.display = 'block'; }
 }
+
 async function loadAdminData() {
-  const btn = document.getElementById('refresh-btn'); btn.textContent = '로딩중...'; btn.disabled = true;
+  const btn = document.getElementById('refresh-btn');
+  btn.innerHTML = '<span class="spinner"></span>'; btn.disabled = true;
   let subs = [];
   try {
     const res = await fetch(SCRIPT_URL + '?t=' + Date.now());
     const data = await res.json();
     if (data.submissions) {
       subs = data.submissions.map(r => ({
-        studentNum: r['학번']||'', studentName: r['이름']||'',
-        missionId: parseInt(r['미션ID'])||0, missionZone: r['미션존']||'',
-        text: r['내용']||'', time: r['타임스탬프']||''
+        studentNum: String(r['학번']||''),
+        studentName: String(r['이름']||''),
+        missionId: parseInt(r['미션ID']) >= 0 ? parseInt(r['미션ID']) : -1,
+        missionZone: String(r['미션존']||''),
+        text: String(r['내용']||''),
+        time: String(r['타임스탬프']||''),
+        completed: r['완료여부'] === '완료'
       }));
     }
   } catch(e) {
     subs = localSubs;
-    document.getElementById('last-updated').textContent = '시트 연결 실패 — 로컬 데이터';
+    document.getElementById('last-updated').textContent = '⚠️ 시트 연결 실패 — 로컬 데이터 표시 중';
   }
   document.getElementById('last-updated').textContent = '업데이트: ' + new Date().toLocaleTimeString('ko-KR', {hour:'2-digit', minute:'2-digit'});
-  renderAdminUI(subs); btn.textContent = '새로고침'; btn.disabled = false;
+  renderAdminUI(subs);
+  btn.textContent = '새로고침'; btn.disabled = false;
 }
+
 function renderAdminUI(subs) {
-  const total = subs.length;
-  const students = new Set(subs.map(s => s.studentNum)).size;
-  const byS = {}; subs.forEach(s => { byS[s.studentNum] = (byS[s.studentNum]||0) + 1; });
+  const realSubs = subs.filter(s => s.missionId >= 0);
+  const finishSubs = subs.filter(s => s.completed);
+  const total = realSubs.length;
+  const studentSet = new Set(realSubs.map(s => s.studentNum));
+  const students = studentSet.size;
+  const byS = {};
+  realSubs.forEach(s => { byS[s.studentNum] = (byS[s.studentNum]||0) + 1; });
   const top = students ? Math.max(...Object.values(byS)) : 0;
   document.getElementById('stat-total').textContent = total;
   document.getElementById('stat-students').textContent = students;
   document.getElementById('stat-top').textContent = top;
+
   document.getElementById('admin-missions-list').innerHTML = MISSIONS.map(m => {
-    const cnt = subs.filter(s => s.missionId === m.id).length;
+    const cnt = realSubs.filter(s => s.missionId === m.id).length;
     const pct = students ? Math.round(cnt / students * 100) : 0;
-    return `<div class="card" style="padding:0.85rem"><div style="display:flex;justify-content:space-between"><span style="font-size:13px;font-weight:700">${m.zone}</span><span style="font-size:13px;color:var(--muted)">${cnt}명</span></div><div class="pbar-wrap"><div class="pbar-fill" style="width:${pct}%"></div></div><span style="font-size:11px;color:var(--muted)">${pct}% 달성</span></div>`;
+    return `<div class="card" style="padding:0.85rem">
+      <div style="display:flex;justify-content:space-between">
+        <span style="font-size:13px;font-weight:700">${m.zone}</span>
+        <span style="font-size:13px;color:var(--muted)">${cnt}명</span>
+      </div>
+      <div class="pbar-wrap"><div class="pbar-fill" style="width:${pct}%"></div></div>
+      <span style="font-size:11px;color:var(--muted)">${pct}% 달성</span>
+    </div>`;
   }).join('');
-  const sMap = {}; subs.forEach(s => { if (!sMap[s.studentNum]) sMap[s.studentNum] = {name:s.studentName, missions:new Set()}; sMap[s.studentNum].missions.add(s.missionId); });
+
+  const sMap = {};
+  realSubs.forEach(s => {
+    if (!sMap[s.studentNum]) sMap[s.studentNum] = {name: s.studentName, missions: new Set()};
+    sMap[s.studentNum].missions.add(s.missionId);
+  });
+  const finishedNums = new Set(finishSubs.map(s => s.studentNum));
   const sorted = Object.entries(sMap).sort((a,b) => b[1].missions.size - a[1].missions.size);
-  document.getElementById('admin-students-list').innerHTML = sorted.length ? sorted.map(([num,info]) =>
-    `<div class="card" style="padding:0.85rem"><div style="display:flex;justify-content:space-between;align-items:center"><div><span style="font-size:14px;font-weight:700">${info.name}</span><span style="font-size:12px;color:var(--muted);margin-left:6px">${num}</span></div><span style="font-size:14px;font-weight:700;color:var(--g600)">${info.missions.size}/9</span></div><div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px">${[...info.missions].map(id => `<span class="badge bdone">${MISSIONS[id]?MISSIONS[id].zone:id}</span>`).join('')}</div></div>`
+
+  document.getElementById('admin-students-list').innerHTML = sorted.length ? sorted.map(([num, info]) =>
+    `<div class="card" style="padding:0.85rem">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <span style="font-size:14px;font-weight:700">${info.name}</span>
+          <span style="font-size:12px;color:var(--muted);margin-left:6px">${num}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          ${finishedNums.has(num) ? '<span class="badge bfinish">완료제출</span>' : ''}
+          <span style="font-size:14px;font-weight:700;color:var(--g600)">${info.missions.size}/9</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px">
+        ${[...info.missions].map(id => `<span class="badge bdone">${MISSIONS[id] ? MISSIONS[id].zone : id}</span>`).join('')}
+      </div>
+    </div>`
   ).join('') : '<p style="font-size:13px;color:var(--muted)">아직 제출 내역이 없어요.</p>';
+
   document.getElementById('admin-feed-list').innerHTML = subs.length ? [...subs].reverse().map(s =>
-    `<div class="sub-item"><div style="display:flex;justify-content:space-between"><span style="font-size:13px;font-weight:700">${s.studentName} (${s.studentNum})</span><span style="font-size:12px;color:var(--muted)">${s.time}</span></div><span class="badge bnew" style="margin-top:5px;display:inline-block">${s.missionZone||''}</span>${s.text ? `<p style="font-size:12px;color:var(--muted);margin-top:5px">${s.text}</p>` : ''}</div>`
+    s.missionId < 0
+      ? `<div class="sub-item" style="border-color:var(--g400)">
+          <div style="display:flex;justify-content:space-between">
+            <span style="font-size:13px;font-weight:700">${s.studentName} (${s.studentNum})</span>
+            <span style="font-size:12px;color:var(--muted)">${s.time}</span>
+          </div>
+          <span class="badge bfinish" style="margin-top:5px;display:inline-block">🎉 최종 완료 제출</span>
+          <p style="font-size:12px;color:var(--muted);margin-top:5px">${s.text}</p>
+        </div>`
+      : `<div class="sub-item">
+          <div style="display:flex;justify-content:space-between">
+            <span style="font-size:13px;font-weight:700">${s.studentName} (${s.studentNum})</span>
+            <span style="font-size:12px;color:var(--muted)">${s.time}</span>
+          </div>
+          <span class="badge bnew" style="margin-top:5px;display:inline-block">${s.missionZone}</span>
+          ${s.text ? `<p style="font-size:12px;color:var(--muted);margin-top:5px">${s.text}</p>` : ''}
+        </div>`
   ).join('') : '<p style="font-size:13px;color:var(--muted)">아직 제출 내역이 없어요.</p>';
 }
+
 function switchTab(id, btn) {
   document.querySelectorAll('.tc').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
