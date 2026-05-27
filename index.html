@@ -18,10 +18,9 @@
   .header h1{font-size:22px;font-weight:700;color:#EAF3DE}
   .header p{font-size:13px;color:#97C459;margin-top:5px}
   .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.25rem;margin-bottom:1rem}
-  .btn{display:block;width:100%;padding:14px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;border:none;text-align:center;font-family:'Noto Sans KR',sans-serif;transition:background 0.15s}
+  .btn{display:block;width:100%;padding:14px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;border:none;text-align:center;font-family:'Noto Sans KR',sans-serif}
   .btn-primary{background:var(--g600);color:#EAF3DE}.btn-primary:active{background:var(--g800)}
-  .btn-done{background:#27500A;color:#EAF3DE;margin-top:10px}
-  .btn-done:active{background:#173404}
+  .btn-done{background:#27500A;color:#EAF3DE;margin-top:10px}.btn-done:active{background:#173404}
   .btn-done:disabled{background:#aaa;cursor:not-allowed}
   .btn-sm{display:inline-flex;align-items:center;width:auto;padding:8px 14px;font-size:13px;font-weight:500;border-radius:10px;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:'Noto Sans KR',sans-serif}
   .btn-sm-green{background:var(--g600);color:#EAF3DE;border-color:var(--g600)}
@@ -34,8 +33,7 @@
   .mc:active{border-color:var(--g400)}
   .mc.done{background:var(--g50);border-color:var(--g600);color:var(--g800)}
   .badge{display:inline-block;font-size:11px;padding:3px 9px;border-radius:8px;font-weight:500}
-  .bdone{background:var(--g50);color:var(--g800)}.bnew{background:#C0DD97;color:#173404}
-  .bfinish{background:#27500A;color:#EAF3DE}
+  .bdone{background:var(--g50);color:var(--g800)}.bnew{background:#C0DD97;color:#173404}.bfinish{background:#27500A;color:#EAF3DE}
   .stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:1rem}
   .stat{background:var(--g50);border-radius:12px;padding:0.85rem 0.5rem;text-align:center}
   .stat-num{font-size:24px;font-weight:700;color:var(--g800)}.stat-label{font-size:11px;color:var(--muted);margin-top:2px}
@@ -58,6 +56,7 @@
   .progress-text{font-size:13px;color:var(--muted);text-align:center;margin-top:6px}
   .spinner{display:inline-block;width:16px;height:16px;border:2px solid #EAF3DE;border-top-color:transparent;border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:6px}
   @keyframes spin{to{transform:rotate(360deg)}}
+  .photo-thumb{width:60px;height:60px;object-fit:cover;border-radius:8px;margin-top:6px}
 </style>
 </head>
 <body>
@@ -93,13 +92,10 @@
     <div class="mg" id="student-bingo"></div>
     <p class="progress-text" id="progress-text"></p>
   </div>
-
-  <!-- 완료 버튼 박스 -->
   <div class="finish-box" id="finish-box" style="display:none">
     <p>🎉 미션을 달성했어요!<br>완료 버튼을 눌러 선생님께 제출하세요.</p>
     <button class="btn btn-done" id="finish-btn" onclick="submitFinish()">✅ 오늘 미션 완료 제출</button>
   </div>
-
   <div>
     <p class="sec-title">내 제출 현황</p>
     <div id="my-subs-list"></div>
@@ -200,13 +196,11 @@ function showScreen(id) {
   document.getElementById(id).classList.add('active');
   window.scrollTo(0, 0);
 }
-
 function toast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.style.display = 'inline-block';
   setTimeout(() => { t.style.display = 'none'; }, 2800);
 }
-
 function goStudent() {
   const num = document.getElementById('home-num').value.trim();
   const name = document.getElementById('home-name').value.trim();
@@ -217,49 +211,38 @@ function goStudent() {
   populateMissionSelect(); renderStudentBingo(); renderMySubmissions();
   showScreen('screen-student');
 }
-
 function getDoneMissions() {
   return new Set(localSubs.filter(s => s.studentNum === currentStudent.num && !s.isFinish).map(s => s.missionId));
 }
-
 function renderStudentBingo() {
   const grid = document.getElementById('student-bingo');
   const done = getDoneMissions();
-  const count = done.size;
-
   grid.innerHTML = MISSIONS.map(m =>
     `<div class="mc${done.has(m.id) ? ' done' : ''}" onclick="selectMission(${m.id})">
       ${m.label.replace(/\n/g,'<br>')}
       ${done.has(m.id) ? '<br><span style="font-size:11px;color:var(--g600);font-weight:700;margin-top:3px;display:block">✓ 완료</span>' : ''}
     </div>`
   ).join('');
-
-  document.getElementById('progress-text').textContent = `${count} / 9 미션 완료`;
-
-  // 1개 이상 완료 시 완료 버튼 표시
+  document.getElementById('progress-text').textContent = `${done.size} / 9 미션 완료`;
   const finishBox = document.getElementById('finish-box');
   const finishBtn = document.getElementById('finish-btn');
-  if (count >= 1) {
+  if (done.size >= 1) {
     finishBox.style.display = 'block';
     if (finishSubmitted) {
-      finishBtn.textContent = '✅ 완료 제출됨';
-      finishBtn.disabled = true;
+      finishBtn.textContent = '✅ 완료 제출됨'; finishBtn.disabled = true;
     } else {
-      finishBtn.textContent = '✅ 오늘 미션 완료 제출';
-      finishBtn.disabled = false;
+      finishBtn.textContent = '✅ 오늘 미션 완료 제출'; finishBtn.disabled = false;
     }
   } else {
     finishBox.style.display = 'none';
   }
 }
-
 function selectMission(id) {
   const done = getDoneMissions();
   if (done.has(id)) { toast('이미 완료한 미션이에요!'); return; }
   document.getElementById('submit-mission').value = id;
   showScreen('screen-submit');
 }
-
 function renderMySubmissions() {
   const list = document.getElementById('my-subs-list');
   const mine = localSubs.filter(s => s.studentNum === currentStudent.num && !s.isFinish);
@@ -271,16 +254,15 @@ function renderMySubmissions() {
         <span class="badge bdone">제출완료</span>
       </div>
       ${s.text ? `<p style="font-size:12px;color:var(--muted);margin-top:5px">${s.text}</p>` : ''}
+      ${s.localPhotoUrl ? `<img src="${s.localPhotoUrl}" class="photo-thumb">` : ''}
     </div>`
   ).join('');
 }
-
 function populateMissionSelect() {
   const sel = document.getElementById('submit-mission');
   sel.innerHTML = '<option value="">미션을 선택하세요</option>' +
     MISSIONS.map(m => `<option value="${m.id}">${m.zone}</option>`).join('');
 }
-
 function previewPhoto(input) {
   const p = document.getElementById('photo-preview');
   if (input.files && input.files[0]) {
@@ -290,41 +272,51 @@ function previewPhoto(input) {
   }
 }
 
-async function postToSheet(payload) {
-  // iframe trick으로 CORS 우회
+// 이미지를 리사이즈해서 base64로 변환 (용량 줄이기)
+function resizeAndConvert(file) {
   return new Promise((resolve) => {
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = SCRIPT_URL;
-    form.target = '_blank';
-    // JSON을 쿼리스트링으로 전달
-    const input = document.createElement('input');
-    input.type = 'hidden'; input.name = 'data'; input.value = JSON.stringify(payload);
-    form.appendChild(input);
-
-    // fetch no-cors 방식 사용 (응답 확인 불가지만 서버엔 도달)
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payload)
-    }).then(() => resolve(true)).catch(() => resolve(false));
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const MAX = 800;
+        let w = img.width, h = img.height;
+        if (w > h && w > MAX) { h = h * MAX / w; w = MAX; }
+        else if (h > MAX) { w = w * MAX / h; h = MAX; }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        const base64 = canvas.toDataURL('image/jpeg', 0.7).split(',')[1];
+        resolve(base64);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
   });
 }
 
 async function submitMission() {
   const mId = document.getElementById('submit-mission').value;
   const text = document.getElementById('submit-text').value.trim();
+  const photoInput = document.getElementById('submit-photo');
   const photoPreview = document.getElementById('photo-preview');
   if (mId === '') { alert('미션을 선택해주세요.'); return; }
-
   const done = getDoneMissions();
   if (done.has(parseInt(mId))) { alert('이미 제출한 미션이에요!'); return; }
 
   const btn = document.getElementById('submit-btn');
   const status = document.getElementById('submit-status');
   btn.innerHTML = '<span class="spinner"></span>제출 중...'; btn.disabled = true;
-  status.textContent = '구글 시트에 저장하는 중...';
+
+  let photoBase64 = '';
+  let localPhotoUrl = '';
+  if (photoInput.files && photoInput.files[0]) {
+    status.textContent = '사진 처리 중...';
+    photoBase64 = await resizeAndConvert(photoInput.files[0]);
+    localPhotoUrl = photoPreview.src;
+  }
+
+  status.textContent = '구글 시트에 저장 중...';
 
   const payload = {
     studentNum: currentStudent.num,
@@ -332,18 +324,37 @@ async function submitMission() {
     missionId: parseInt(mId),
     missionZone: MISSIONS[parseInt(mId)].zone,
     text,
-    photoUrl: (photoPreview.src && photoPreview.src.startsWith('data:')) ? '(사진첨부)' : '',
+    photoBase64,
     completed: false
   };
 
-  await postToSheet(payload);
+  try {
+    const res = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (data.result === 'ok') {
+      toast('✅ 제출 완료!');
+    } else {
+      toast('⚠️ 제출됐지만 오류가 있어요');
+    }
+  } catch(err) {
+    // no-cors fallback
+    await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
+    toast('✅ 제출 완료!');
+  }
 
-  localSubs.push({...payload, time: new Date().toLocaleTimeString('ko-KR', {hour:'2-digit', minute:'2-digit'})});
+  localSubs.push({
+    studentNum: currentStudent.num, studentName: currentStudent.name,
+    missionId: parseInt(mId), missionZone: MISSIONS[parseInt(mId)].zone,
+    text, localPhotoUrl,
+    time: new Date().toLocaleTimeString('ko-KR', {hour:'2-digit', minute:'2-digit'})
+  });
+
   document.getElementById('submit-text').value = '';
-  document.getElementById('submit-photo').value = '';
+  photoInput.value = '';
   photoPreview.style.display = 'none'; photoPreview.src = '';
-
-  toast('✅ 제출 완료! 시트에 저장됐어요.');
   renderStudentBingo(); renderMySubmissions();
   btn.textContent = '제출하기'; btn.disabled = false; status.textContent = '';
   showScreen('screen-student');
@@ -352,22 +363,19 @@ async function submitMission() {
 async function submitFinish() {
   const done = getDoneMissions();
   if (done.size === 0) { alert('먼저 미션을 제출해주세요!'); return; }
-
   const btn = document.getElementById('finish-btn');
   btn.innerHTML = '<span class="spinner"></span>제출 중...'; btn.disabled = true;
-
   const payload = {
-    studentNum: currentStudent.num,
-    studentName: currentStudent.name,
-    missionId: -1,
-    missionZone: '최종완료',
+    studentNum: currentStudent.num, studentName: currentStudent.name,
+    missionId: -1, missionZone: '최종완료',
     text: `총 ${done.size}개 미션 완료`,
-    photoUrl: '',
-    completed: true
+    photoBase64: '', completed: true
   };
-
-  await postToSheet(payload);
-
+  try {
+    await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+  } catch(e) {
+    await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
+  }
   localSubs.push({...payload, isFinish: true, time: new Date().toLocaleTimeString('ko-KR', {hour:'2-digit', minute:'2-digit'})});
   finishSubmitted = true;
   toast('🎉 완료 제출됐어요! 수고했어요~');
@@ -383,7 +391,8 @@ function adminLogin() {
 
 async function loadAdminData() {
   const btn = document.getElementById('refresh-btn');
-  btn.innerHTML = '<span class="spinner"></span>'; btn.disabled = true;
+  btn.innerHTML = '<span class="spinner" style="border-color:var(--text);border-top-color:transparent"></span>';
+  btn.disabled = true;
   let subs = [];
   try {
     const res = await fetch(SCRIPT_URL + '?t=' + Date.now());
@@ -396,12 +405,13 @@ async function loadAdminData() {
         missionZone: String(r['미션존']||''),
         text: String(r['내용']||''),
         time: String(r['타임스탬프']||''),
+        photoUrl: String(r['사진URL']||''),
         completed: r['완료여부'] === '완료'
       }));
     }
   } catch(e) {
     subs = localSubs;
-    document.getElementById('last-updated').textContent = '⚠️ 시트 연결 실패 — 로컬 데이터 표시 중';
+    document.getElementById('last-updated').textContent = '⚠️ 시트 연결 실패';
   }
   document.getElementById('last-updated').textContent = '업데이트: ' + new Date().toLocaleTimeString('ko-KR', {hour:'2-digit', minute:'2-digit'});
   renderAdminUI(subs);
@@ -412,10 +422,8 @@ function renderAdminUI(subs) {
   const realSubs = subs.filter(s => s.missionId >= 0);
   const finishSubs = subs.filter(s => s.completed);
   const total = realSubs.length;
-  const studentSet = new Set(realSubs.map(s => s.studentNum));
-  const students = studentSet.size;
-  const byS = {};
-  realSubs.forEach(s => { byS[s.studentNum] = (byS[s.studentNum]||0) + 1; });
+  const students = new Set(realSubs.map(s => s.studentNum)).size;
+  const byS = {}; realSubs.forEach(s => { byS[s.studentNum] = (byS[s.studentNum]||0) + 1; });
   const top = students ? Math.max(...Object.values(byS)) : 0;
   document.getElementById('stat-total').textContent = total;
   document.getElementById('stat-students').textContent = students;
@@ -477,6 +485,7 @@ function renderAdminUI(subs) {
           </div>
           <span class="badge bnew" style="margin-top:5px;display:inline-block">${s.missionZone}</span>
           ${s.text ? `<p style="font-size:12px;color:var(--muted);margin-top:5px">${s.text}</p>` : ''}
+          ${s.photoUrl ? `<a href="${s.photoUrl}" target="_blank" style="display:inline-block;margin-top:6px;font-size:12px;color:var(--g600);font-weight:500">📷 사진 보기</a>` : ''}
         </div>`
   ).join('') : '<p style="font-size:13px;color:var(--muted)">아직 제출 내역이 없어요.</p>';
 }
